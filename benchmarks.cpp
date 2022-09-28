@@ -10,7 +10,7 @@
 #include "dac.hpp"
 #include "file_scanner.hpp"
 
-#define NUM_SAMPLES 100
+#define NUM_SAMPLES 35
 #define WINDOW_SIZE 100000
 #define DAC_LMAX {1,4,255}
 
@@ -77,8 +77,9 @@ int main(int, char**) {
             // measure random access time
             for (int i = 0; i < NUM_SAMPLES; i++) {
                 double micros = 0;
+                int rn = rand() % sdc.size();
                 MEASURE(
-                    for (int j = 0; j < WINDOW_SIZE; j++) { sdc[rand() % sdc.size()]; }, micros);
+                    for (int j = 0; j < WINDOW_SIZE; j++) { sdc[rn]; }, micros);
                 emit(statsFile, "SDP", "random_access_time", dataset, i, std::to_string(micros / WINDOW_SIZE));
             }
 

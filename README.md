@@ -26,3 +26,6 @@ To use the benchmark, you need to compile the benchmark.cpp file with CMake. The
 - [Pandas](https://pandas.pydata.org/)
 
 To execute the benchmark, you need to launch it from the main folder of the project. The benchmark will generate a CSV file in the 'csv' folder. To generate the plots, you need to launch the plots_maker.py script from the main folder of the project. The plots will be generated in the 'out' folder and shown on the screen.
+
+### How the benchmark works
+The datasets used for the benchmark are in the 'data' folder. The benchmark will compress each dataset with the SDC and DAC algorithms, and will repeat the compression for each dataset NUM_SAMPLES times. Then, random access times and sequential access times will be measured by repeating the same access for each dataset. The results will be saved in a CSV file in the 'csv' folder with the timestamp of the execution.
