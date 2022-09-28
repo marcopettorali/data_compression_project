@@ -127,8 +127,9 @@ int main(int, char**) {
             // measure random access time
             for (int i = 0; i < NUM_SAMPLES; i++) {
                 double micros = 0;
+                int rn = rand() % dac.size();
                 MEASURE(
-                    for (int j = 0; j < WINDOW_SIZE; j++) { dac[rand() % dac.size()]; }, micros);
+                    for (int j = 0; j < WINDOW_SIZE; j++) { dac[rn]; }, micros);
                 emit(statsFile, name.c_str(), "random_access_time", dataset, i, std::to_string(micros / WINDOW_SIZE));
             }
 
@@ -136,6 +137,7 @@ int main(int, char**) {
             // measure sequential access time
             for (int i = 0; i < NUM_SAMPLES; i++) {
                 double micros = 0;
+
                 tongrams::directly_accessable_code_sequence::iterator it = dac.begin();
                 double dummy_sum = 0;
                 for (int j = 0; j < WINDOW_SIZE; j++) {
